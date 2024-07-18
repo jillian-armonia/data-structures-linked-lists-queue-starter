@@ -88,11 +88,7 @@ class SinglyLinkedList {
     }
 
     peekAtHead() {
-        if (this.length === 0){
-            return undefined;
-        }
-
-        return this.head.value
+        if (length > 0) return this.head.value;
 
         // Write your hypothesis on the time complexity of this method here O(1)
     }
