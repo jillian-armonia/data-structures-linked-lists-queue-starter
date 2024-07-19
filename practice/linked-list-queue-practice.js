@@ -175,24 +175,65 @@ class DoublyLinkedList {
 
     findMid() {
         // Returns the middle node
+        let middleN = Math.floor(this.tail.value / 2);
+        let middle = this.head;
 
-        
+        if (this.tail.value % 2 === 0){
+            while (middleN - 1 > 0){
+                middle = middle.next;
+                middleN--;
+            }
+        } else {
+            while (middleN > 0){
+                middle = middle.next;
+                middleN--;
+            }
+        }
+
+
+        return middle;
+
         // Implement this as a singly linked list then as a doubly linked list
             // How do the implementation for singly and doubly vary if at all?
+            //Pretty much still the same if I had implemented the length trick as well
+            //But because the tail had the same value as the length of it, it was a cop out
 
         // Write your hypothesis on the time complexity of this method here
+        //O(n)
     }
 
     reverse() {
         // Returns a new reversed version of the linked list
+        let newReversed = new DoublyLinkedList();
+        let newNode = this.tail;
 
+        while(newNode){
+            newReversed.addToTail(newNode.value);
+            newNode = newNode.prev;
+        }
+
+        return newReversed
         // Write your hypothesis on the time complexity of this method here
     }
 
     reverseInPlace() {
         // Reverses the linked list in-place
+        let originalH = this.head;
+        let nextH = this.head.next;
+
+
+        while (this.head !== this.tail){
+            originalH.next = nextH.next;
+            originalH.prev = nextH;
+            nextH.next = this.head;
+            this.head = nextH;
+            this.head.prev = null;
+
+            nextH = originalH.next;
+        }
 
         // Write your hypothesis on the time complexity of this method here
+        //O(n) because of the iteration
     }
 }
 
